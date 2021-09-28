@@ -54,7 +54,7 @@ namespace Test {
             await helper.WaitUntilOutboxIsEmptyAsync(new CancellationToken());
 
             HttpResponseMessage response_2 = await client.GetAsync("/");
-            string response_message_2 = await response_1.Content.ReadAsStringAsync();
+            string response_message_2 = await response_2.Content.ReadAsStringAsync();
 
             Assert.AreNotEqual(response_message_1, response_message_2);
         }
