@@ -26,7 +26,7 @@ namespace Test {
     public class MyTest {
         [Test]
         public async Task Test1() {
-            WebApplicationFactory<Startup> factory = new WebApplicationFactory<Startup>().WithWebHostBuilder(
+            using WebApplicationFactory<Startup> factory = new WebApplicationFactory<Startup>().WithWebHostBuilder(
                 builder => {
                     builder.ConfigureTestServices(
                         services => {
@@ -51,7 +51,6 @@ namespace Test {
             await producer.ProduceAsync(new MyMessageType() { LastMessage = 6 });
 
             await helper.WaitUntilAllMessagesAreConsumedAsync();
-            await helper.WaitUntilOutboxIsEmptyAsync(new CancellationToken());
 
             HttpResponseMessage response_2 = await client.GetAsync("/");
             string response_message_2 = await response_2.Content.ReadAsStringAsync();
