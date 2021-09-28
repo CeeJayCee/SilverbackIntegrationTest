@@ -47,7 +47,7 @@ namespace Test {
 
             await helper.WaitUntilConnectedAsync();
 
-            var producer = helper.Broker.GetTestProducer("data");
+            var producer = helper.Broker.GetTestProducer("my-topic");
             await producer.ProduceAsync(new MyMessageType() { LastMessage = 6 });
 
             await helper.WaitUntilAllMessagesAreConsumedAsync();
